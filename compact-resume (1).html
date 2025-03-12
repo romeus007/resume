@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roman Aleksandrenko - Senior Product Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+        }
+
+        /* Container for Grid Layout */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2.5fr 1fr; /* Adjusted ratio for main content vs sidebar */
+            gap: 20px;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                margin: 10px;
+                padding: 15px;
+            }
+            
+            header {
+                text-align: left;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-info {
+                text-align: left;
+                margin-top: 10px;
+            }
+        }
+
+        /* Header Styles */
+        header {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin: 0;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .contact-info p {
+            margin: 3px 0;
+            font-size: 1em;
+        }
+
+        .contact-info a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        /* Summary Styles */
+        .summary p {
+            font-size: 1em;
+            line-height: 1.5;
+            margin-top: 5px;
+        }
+
+        /* Experience Styles with Timeline */
+        .experience .job {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 20px; /* Reduced padding */
+        }
+
+        .job::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: #e0e0e0;
+        }
+
+        .job:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background-color: #3498db;
+            border-radius: 50%;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .job-header h3 {
+            font-size: 1.1em;
+            margin: 0;
+            color: #2c3e50;
+        }
+
+        .dates {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .role {
+            font-weight: 700;
+            font-size: 1em;
+            color: #34495e;
+            margin: 3px 0;
+        }
+
+        .description {
+            color: #7f8c8d;
+            margin-bottom: 8px;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 15px;
+            font-size: 0.9em;
+        }
+
+        ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+        }
+
+        /* Projects Styles */
+        .projects .project {
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .projects h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-size: 1em;
+        }
+        
+        .projects p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border-top: 3px solid #3498db;
+        }
+
+        /* Skills Styles */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-tags span {
+            display: inline-block;
+            background-color: #e9f7fe;
+            color: #3498db;
+            padding: 5px 8px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            border: 1px solid #d6eaf8;
+        }
+
+        /* Education Styles */
+        .education .degree {
+            margin-bottom: 10px;
+        }
+
+        .education h3 {
+            font-size: 1em;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .professional-development ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 5px;
+        }
+
+        .professional-development li {
+            margin-bottom: 5px;
+            padding: 5px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.9em;
+        }
+
+        /* Override for education list items to remove arrows */
+        .professional-development ul li {
+            padding-left: 0;
+        }
+        
+        .professional-development ul li::before {
+            content: none;
+        }
+
+        /* Languages Section */
+        .languages {
+            margin-top: 15px;
+        }
+        
+        .language {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white;
+                font-size: 10pt;
+                line-height: 1.3;
+            }
+            
+            .container {
+                max-width: 100%;
+                margin: 0;
+                padding: 10px;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            h2 {
+                font-size: 13pt;
+                margin-bottom: 5px;
+            }
+            
+            header h1 {
+                font-size: 16pt;
+            }
+            
+            section {
+                margin-bottom: 10px;
+            }
+            
+            .experience .job {
+                margin-bottom: 10px;
+            }
+            
+            .skill-tags span {
+                border: 1px solid #ccc;
+                background-color: white !important;
+                color: #333 !important;
+                padding: 2px 5px;
+            }
+            
+            /* Ensure page breaks don't occur within jobs */
+            .job, .project, .degree {
+                page-break-inside: avoid;
+            }
+
+            /* Force background colors to print */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>Roman Aleksandrenko</h1>
+            <div class="contact-info">
+                <p>Sr. Product Manager, Growth</p>
+                <p>romeus99@gmail.com</p>
+                <p><a href="https://tinyurl.com/pmcandidate">https://tinyurl.com/pmcandidate</a></p>
+            </div>
+        </header>
+
+        <!-- Main Content Column -->
+        <div class="main-content">
+            <!-- Summary Section -->
+            <section class="summary">
+                <h2>SUMMARY</h2>
+                <p>Product growth leader with extensive product management experience, 10 yoe. Proven track record of scaling across B2B & B2C.</p>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="experience">
+                <h2>EXPERIENCE</h2>
+                <div class="job">
+                    <div class="job-header">
+                        <h3>Gong</h3>
+                        <p class="dates">2023 - Present</p>
+                    </div>
+                    <p class="role">Sr. Product Manager, Growth</p>
+                    <p class="description">Revenue intelligence AI platform</p>
+                    <ul>
+                        <li>Driving B2B growth with Product Led Growth strategy</li>
+                        <li>Increased NRR by 25% through strategic optimization initiatives targeting user retention & revenue expansion</li>
+                        <li>Defined PQLs and upsell algorithm boosting expansion revenue by 15%</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <div class="job-header">
+                        <h3>Unstoppable Domains</h3>
+                        <p class="dates">2021 - Present</p>
+                    </div>
+                    <p class="role">Sr. Product Manager, Growth</p>
+                    <p class="description">Web3 identity platform. Leading the product growth efforts.</p>
+                    <ul>
+                        <li>Scaled domain distribution (300K new users) by optimizing conversion, boosting organic traffic by 15%, executing partnerships with Crypto.com, Binance, Blockfolio</li>
+                        <li>Enabled dozens of partnerships resulting in the top revenue quarter in company history</li>
+                        <li>Internalized experimentation program by implementing Optimizely and mentoring 4 product managers</li>
+                        <li>Reduced abuse rate from 90% to 25% by implementing various abuse prevention tools</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <div class="job-header">
+                        <h3>A Cloud Guru (acquired by Pluralsight for $2b)</h3>
+                        <p class="dates">2020 - 2021</p>
+                    </div>
+                    <p class="role">Sr. Product Manager, Growth</p>
+                    <p class="description">Education platform for engineers. Defined & led Product-Led Growth strategy for SMB segment.</p>
+                    <ul>
+                        <li>Increased B2B NRR by 20% by implementing Product-Led Growth strategy</li>
+                        <li>Designed free trial experience, grew self-service segment from 0 to 15% company revenue</li>
+                        <li>Improved self-service segment retention with customer activation user journeys</li>
+                        <li>Implemented revenue expansion customer journeys growing MRR by 10%</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <div class="job-header">
+                        <h3>Homebase</h3>
+                        <p class="dates">2019 - 2020</p>
+                    </div>
+                    <p class="role">Sr. Product Manager, Growth</p>
+                    <p class="description">Time tracking, payroll and scheduling software. (Covid layoff)</p>
+                    <ul>
+                        <li>Increased MRR by 26% through A/B-testing improving activation & monetization</li>
+                        <li>Increased adoption of Hiring feature by 25% by optimizing the intent build-up</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <div class="job-header">
+                        <h3>StyleSeat</h3>
+                        <p class="dates">2018 - 2019</p>
+                    </div>
+                    <p class="role">Sr. Product Manager, Growth</p>
+                    <p class="description">Leading beauty services marketplace. Focused on tech SEO, Pro subscription conversion and paid feature adoption.</p>
+                    <ul>
+                        <li>Increased appointments by 15% by boosting organic traffic with programmatic landing pages and robots.txt indexing optimization</li>
+                        <li>Increased revenue via improved payment features discoverability and reduced customer friction</li>
+                        <li>Increased trial to subscription conversion by 10% by tweaking Pro recommendation algorithm</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <div class="job-header">
+                        <h3>Cro Metrics</h3>
+                        <p class="dates">2018</p>
+                    </div>
+                    <p class="role">Sr. Product Manager, Growth</p>
+                    <p class="description">Award-winning conversion optimization agency.</p>
+                    <ul>
+                        <li>Defined top of the funnel experimentation for top Silicon Valley brands</li>
+                        <li>Implemented over 200 A/B tests across 10 roadmaps</li>
+                        <li>Trained over 10 customer growth teams on A/B-testing best practices</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <div class="job-header">
+                        <h3>Previous Roles</h3>
+                        <p class="dates">2012 - 2017</p>
+                    </div>
+                    <ul>
+                        <li><strong>E25Media (2017)</strong> - Sr. Product Manager: Launched 5 products across multiple platforms; Led the team of 2 product managers</li>
+                        <li><strong>Pixc (2016)</strong> - Head of Product: Led team of 5; Increased subscription conversion by 47%</li>
+                        <li><strong>Boost Media (2012-2015)</strong> - Product Manager: Launched new writer's platform; Achieved 45% increase in writer's retention</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sidebar Column -->
+        <div class="sidebar">
+            <!-- Projects Section -->
+            <section class="projects">
+                <h2>PROJECTS</h2>
+                <div class="project">
+                    <h3>SlimU (2020)</h3>
+                    <p>Marketplace connecting customers with nutritionists. Bootstrapped to 50K MRR</p>
+                </div>
+                <div class="project">
+                    <h3>BlueBali (2018)</h3>
+                    <p>Built and promoted a jewelry store on Shopify. Bootstrapped to 10K total revenue</p>
+                </div>
+                <div class="project">
+                    <h3>Habitloop (2015)</h3>
+                    <p>App to help people develop good habits. Built specs, hired team, launched iOS app</p>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="skills">
+                <h2>SKILLS</h2>
+                <div class="skill-tags">
+                    <span>Product Discovery</span>
+                    <span>CRO</span>
+                    <span>Product Strategy</span>
+                    <span>Growth Strategy</span>
+                    <span>Optimizely</span>
+                    <span>Amplitude</span>
+                    <span>Web3</span>
+                    <span>Figma</span>
+                    <span>SEO</span>
+                    <span>SEM</span>
+                    <span>SaaS</span>
+                    <span>eCommerce</span>
+                    <span>PLG</span>
+                    <span>MySQL</span>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section class="education">
+                <h2>EDUCATION</h2>
+                <div class="professional-development">
+                    <ul>
+                        <li>Product Strategy & Leadership - Reforge (2022)</li>
+                        <li>Design Psychology - Growth Design (2021)</li>
+                        <li>Generative AI for PMs - GoPractice</li>
+                        <li>AI for Everyone - Coursera (2020)</li>
+                        <li>Advanced Product Growth - Reforge (2019)</li>
+                        <li>Customer Development - Stanford CPD (2015)</li>
+                        <li>Marketing Management, BA - FESU (2010)</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Languages Section (Added from PDF) -->
+            <section class="languages">
+                <h2>LANGUAGES</h2>
+                <div class="language">
+                    <span>Russian</span>
+                    <span>Native</span>
+                </div>
+                <div class="language">
+                    <span>Portuguese</span>
+                    <span>Advanced</span>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
